@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sofia-Jeanne Caring — The Relational School</title>
+    <meta name="description" content="Coaching, group practice, and retreats for people who've done the inner work but still find themselves stuck in the same relational patterns. Founded by Sofia-Jeanne Caring.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --coral: #E8654A;
+            --coral-deep: #D5543A;
+            --sun: #F2A922;
+            --sage: #7BA687;
+            --sky: #5BA4CF;
+            --plum: #8B5E83;
+            --cream: #FFF8F0;
+            --warm-white: #FFFDFB;
+            --deep: #2D2A26;
+            --deep-soft: #4A4540;
+            --glow: #FFF0D4;
+            --coral-light: #FDEEE9;
+            --sage-light: #EDF5EF;
+            --sky-light: #E8F2F8;
+            --plum-light: #F3EBF1;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--deep);
+            background: var(--warm-white);
+            line-height: 1.7;
+            font-size: 17px;
+            overflow-x: hidden;
+        }
+
+        /* ===== NAV ===== */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(255, 253, 251, 0.92);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+            padding: 0.8rem 2rem;
+        }
+
+        .nav-logo {
+            font-family: 'Fraunces', serif;
+            font-weight: 400;
+            font-size: 1.1rem;
+            color: var(--deep);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--deep-soft);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--coral); }
+
+        .nav-cta {
+            background: var(--coral) !important;
+            color: white !important;
+            padding: 0.5rem 1.3rem !important;
+            border-radius: 50px;
+            font-size: 0.82rem !important;
+        }
+
+        .nav-cta:hover { background: var(--coral-deep) !important; }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            padding: 6rem 2rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 4rem;
+        }
+
+        .hero-text {
+            max-width: 540px;
+        }
+
+        .hero-label {
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 0.2s;
+        }
+
+        .hero h1 {
+            font-family: 'Fraunces', serif;
+            font-weight: 300;
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            line-height: 1.15;
+            color: var(--deep);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 0.4s;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--coral);
+            font-weight: 400;
+        }
+
+        .hero-sub {
+            font-size: 1.1rem;
+            color: var(--deep-soft);
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 0.6s;
+        }
+
+        .hero-image {
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 0.5s;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 520px;
+            object-fit: cover;
+            object-position: center top;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 0.8s;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--coral);
+            color: white;
+            box-shadow: 0 4px 20px rgba(232, 101, 74, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--coral-deep);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 28px rgba(232, 101, 74, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--deep);
+            border: 2px solid var(--deep);
+        }
+
+        .btn-secondary:hover {
+            background: var(--deep);
+            color: var(--cream);
+            transform: translateY(-2px);
+        }
+
+        /* ===== SECTIONS ===== */
+        section { padding: 6rem 2rem; }
+        .container { max-width: 960px; margin: 0 auto; }
+
+        .section-label {
+            font-weight: 600;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Fraunces', serif;
+            font-weight: 300;
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title em {
+            font-style: italic;
+            color: var(--coral);
+            font-weight: 400;
+        }
+
+        /* ===== ABOUT ===== */
+        .about { background: var(--warm-white); }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .about-photo img {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+        }
+
+        .about-text {
+            font-size: 1.05rem;
+            color: var(--deep-soft);
+        }
+
+        .about-text p { margin-bottom: 1.2rem; }
+
+        .about-highlight {
+            font-family: 'Fraunces', serif;
+            font-size: 1.35rem;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--deep);
+            border-left: 3px solid var(--sun);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            line-height: 1.5;
+        }
+
+        /* ===== WHO THIS IS FOR ===== */
+        .who {
+            background: var(--cream);
+        }
+
+        .who-list {
+            list-style: none;
+            max-width: 700px;
+            margin-top: 2rem;
+        }
+
+        .who-list li {
+            padding: 0.8rem 0 0.8rem 2rem;
+            position: relative;
+            font-size: 1.05rem;
+            color: var(--deep-soft);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .who-list li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--sun);
+            font-size: 0.9rem;
+        }
+
+        /* ===== OFFERINGS ===== */
+        .offerings { background: var(--warm-white); }
+
+        .offerings-section-title {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            font-size: 0.72rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--deep-soft);
+            margin-top: 3rem;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--cream);
+        }
+
+        .offerings-section-title:first-of-type {
+            margin-top: 2rem;
+        }
+
+        .offerings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .offering-card {
+            background: var(--cream);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offering-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+        }
+
+        .offering-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+        }
+
+        .card-coral::before { background: var(--coral); }
+        .card-sun::before { background: var(--sun); }
+        .card-sage::before { background: var(--sage); }
+        .card-sky::before { background: var(--sky); }
+        .card-plum::before { background: var(--plum); }
+
+        .offering-icon {
+            font-size: 1.6rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .offering-type {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+        }
+
+        .type-coral { color: var(--coral); }
+        .type-sun { color: var(--sun); }
+        .type-sage { color: var(--sage); }
+        .type-sky { color: var(--sky); }
+        .type-plum { color: var(--plum); }
+
+        .offering-name {
+            font-family: 'Fraunces', serif;
+            font-weight: 400;
+            font-size: 1.3rem;
+            margin-bottom: 0.7rem;
+            line-height: 1.3;
+        }
+
+        .offering-desc {
+            color: var(--deep-soft);
+            font-size: 0.92rem;
+            margin-bottom: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .offering-meta {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-tag {
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 0.25rem 0.7rem;
+            border-radius: 50px;
+            background: rgba(0,0,0,0.04);
+            color: var(--deep-soft);
+        }
+
+        /* ===== FULL-WIDTH IMAGE BREAK ===== */
+        .image-break {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .image-break img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 40%;
+        }
+
+        .image-break-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(45,42,38,0) 50%, rgba(45,42,38,0.4) 100%);
+        }
+
+        /* ===== APPROACH ===== */
+        .approach { background: var(--cream); }
+
+        .approach-text {
+            font-size: 1.1rem;
+            color: var(--deep-soft);
+            max-width: 680px;
+            margin-bottom: 2.5rem;
+        }
+
+        .approach-text p { margin-bottom: 1.2rem; }
+
+        .approach-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .approach-item { text-align: center; padding: 1rem; }
+
+        .approach-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+        }
+
+        .approach-item:nth-child(1) .approach-icon { background: var(--coral-light); }
+        .approach-item:nth-child(2) .approach-icon { background: var(--glow); }
+        .approach-item:nth-child(3) .approach-icon { background: var(--sage-light); }
+        .approach-item:nth-child(4) .approach-icon { background: var(--sky-light); }
+
+        .approach-item h3 {
+            font-family: 'Fraunces', serif;
+            font-weight: 400;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .approach-item p {
+            font-size: 0.88rem;
+            color: var(--deep-soft);
+        }
+
+        /* ===== ROOTS ===== */
+        .roots { background: var(--warm-white); }
+
+        .roots-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 1.5rem;
+        }
+
+        .roots-list li {
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.88rem;
+            font-weight: 500;
+        }
+
+        .roots-list li:nth-child(odd) { background: var(--glow); color: var(--deep); }
+        .roots-list li:nth-child(even) { background: var(--coral-light); color: var(--deep); }
+
+        /* ===== CONNECT ===== */
+        .connect {
+            background: var(--deep);
+            color: var(--cream);
+            text-align: center;
+        }
+
+        .connect .section-title { color: var(--cream); }
+        .connect .section-title em { color: var(--sun); }
+
+        .connect-text {
+            color: rgba(255,248,240,0.7);
+            max-width: 520px;
+            margin: 0 auto 2.5rem;
+            font-size: 1.05rem;
+        }
+
+        .btn-glow {
+            background: var(--sun);
+            color: var(--deep);
+            box-shadow: 0 4px 24px rgba(242, 169, 34, 0.35);
+        }
+
+        .btn-glow:hover {
+            background: #E09B1A;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 32px rgba(242, 169, 34, 0.45);
+        }
+
+        .connect-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .connect-link {
+            color: var(--cream);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+
+        .connect-link:hover { opacity: 1; }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--deep);
+            border-top: 1px solid rgba(255,248,240,0.08);
+            padding: 2rem;
+            text-align: center;
+            color: rgba(255,248,240,0.3);
+            font-size: 0.8rem;
+        }
+
+        /* ===== REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                min-height: auto;
+                padding: 7rem 1.5rem 3rem;
+                gap: 2.5rem;
+            }
+
+            .hero-image { order: -1; }
+
+            .hero-image img {
+                height: 350px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-photo {
+                max-width: 280px;
+            }
+
+            section { padding: 4rem 1.5rem; }
+
+            .nav-links a:not(.nav-cta) { display: none; }
+
+            .cta-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .offerings-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .approach-items {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .image-break { height: 250px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <a href="#" class="nav-logo">Sofia-Jeanne</a>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#offerings">Offerings</a>
+            <a href="#approach">Approach</a>
+            <a href="#connect" class="nav-cta">Book a Call</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-text">
+            <div class="hero-label">The Relational School</div>
+            <h1>Full life, wide eyes, <em>open heart</em></h1>
+            <p class="hero-sub">Coaching, group practice, and retreats for people who've done the inner work — but still find themselves stuck in the same relational patterns.</p>
+            <div class="cta-group">
+                <a href="https://calendly.com/sofiajeannec/mapping?month=2026-03" class="btn btn-primary">Book a Free Intro Call</a>
+                <a href="#offerings" class="btn btn-secondary">See Offerings</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="images/sunflowers.jpg" alt="Sofia-Jeanne among sunflowers">
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid reveal">
+                <div class="about-photo">
+                    <img src="images/portrait.jpg" alt="Sofia-Jeanne Caring">
+                </div>
+                <div>
+                    <div class="section-label">About</div>
+                    <h2 class="section-title">I watch for the <em>sparkle</em></h2>
+                    <div class="about-text">
+                        <p>I'm Sofia-Jeanne — organizational psychologist, relational facilitator, and founder of The Relational School. I work with people at the place where inner change meets outer transformation.</p>
+
+                        <p>I work with people who've done the inner work — meditation, therapy, personal development — but still find themselves stuck in the same relational patterns. Smart, self-aware people who understand their patterns intellectually but can't seem to break free of them in the moment.</p>
+
+                        <div class="about-highlight">
+                            "We're not adding more insight. We're loosening your grip on who you think you have to be."
+                        </div>
+
+                        <p>Through embodied practice — not just conversation — we create real change in how you show up in relationship. How we relate to ourselves shapes how we relate to each other, and that shapes everything we build together.</p>
+
+                        <p>I hold dual master's degrees from Columbia University and UNC Kenan-Flagler, and I've spent over a decade facilitating circling, shadow work, and embodied inquiry — from week-long retreats around the world to deep one-on-one work.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHO THIS IS FOR -->
+    <section class="who">
+        <div class="container reveal">
+            <div class="section-label">Is This You?</div>
+            <h2 class="section-title">Who this is <em>for</em></h2>
+            <ul class="who-list">
+                <li>You've done a lot of spiritual or personal development work, but your relationships still feel hard</li>
+                <li>You can see your patterns clearly, but knowing about them doesn't stop them from running you</li>
+                <li>You're tired of rearranging furniture in the same room — you want to realize you don't have to stay in that room at all</li>
+                <li>You're ready to practice something new in relationship, not just understand it</li>
+                <li>You want your transformation to be embodied, not just intellectual</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- IMAGE BREAK -->
+    <div class="image-break">
+        <img src="images/forest.jpg" alt="Standing in the forest">
+        <div class="image-break-overlay"></div>
+    </div>
+
+    <!-- OFFERINGS -->
+    <section class="offerings" id="offerings">
+        <div class="container">
+            <div class="reveal">
+                <div class="section-label">Offerings</div>
+                <h2 class="section-title">Ways to <em>practice together</em></h2>
+            </div>
+
+            <!-- WEEKLY GROUPS -->
+            <div class="offerings-section-title reveal">Weekly Group Sessions</div>
+            <div class="offerings-grid reveal">
+                <div class="offering-card card-sun">
+                    <div class="offering-icon">📝</div>
+                    <div class="offering-type type-sun">Weekly · 90 min</div>
+                    <div class="offering-name">Insight + Accountability</div>
+                    <p class="offering-desc">Inner work journaling with prompts, plus accountability for the outer holy work that's meaningful to you. Monthly members get 1:1 time with me in breakout — but anyone can join for free.</p>
+                    <div class="offering-meta">
+                        <span class="meta-tag">Free access</span>
+                        <span class="meta-tag">1:1 for members</span>
+                    </div>
+                </div>
+
+                <div class="offering-card card-sage">
+                    <div class="offering-icon">🌊</div>
+                    <div class="offering-type type-sage">Weekly · 60 min</div>
+                    <div class="offering-name">Movement + Expression</div>
+                    <p class="offering-desc">Musically inspired, guided expression. You're not interacting with others — you're in your own space, feeling your own body and voice, letting it move inside you and through your physical space.</p>
+                    <div class="offering-meta">
+                        <span class="meta-tag">Group container</span>
+                        <span class="meta-tag">Solo practice</span>
+                    </div>
+                </div>
+
+                <div class="offering-card card-coral">
+                    <div class="offering-icon">⚡</div>
+                    <div class="offering-type type-coral">Weekly · 2 hours</div>
+                    <div class="offering-name">Pattern Break</div>
+                    <p class="offering-desc">The finale. Live relational practice where you're actually playing together — breaking patterns, finding new relational juiciness, bringing fresh awareness to what happens between you in the moment.</p>
+                    <div class="offering-meta">
+                        <span class="meta-tag">Live relational practice</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MONTHLY -->
+            <div class="offerings-section-title reveal">Monthly Deep Dive</div>
+            <div class="offerings-grid reveal">
+                <div class="offering-card card-plum">
+                    <div class="offering-icon">🔥</div>
+                    <div class="offering-type type-plum">Monthly</div>
+                    <div class="offering-name">The Crucible</div>
+                    <p class="offering-desc">For going ham and swinging hard. Nondual dualing. A monthly container for the ones who want to bring full intensity and meet what's there without flinching.</p>
+                    <div class="offering-meta">
+                        <span class="meta-tag">Advanced practice</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 1:1 + RETREATS -->
+            <div class="offerings-section-title reveal">1:1 &amp; Retreats</div>
+            <div class="offerings-grid reveal">
+                <div class="offering-card card-sky">
+                    <div class="offering-icon">💎</div>
+                    <div class="offering-type type-sky">Ongoing</div>
+                    <div class="offering-name">1:1 Coaching</div>
+                    <p class="offering-desc">Deep, ongoing work together. I see your patterns, hold the vision of who you're becoming, and walk with you through the territory of transformation. Weekly sessions with text access between meetings.</p>
+                    <div class="offering-meta">
+                        <span class="meta-tag">By application</span>
+                    </div>
+                </div>
+
+                <div class="offering-card card-coral">
+                    <div class="offering-icon">🌄</div>
+                    <div class="offering-type type-coral">Multi-Day</div>
+                    <div class="offering-name">Pattern Break Workshops</div>
+                    <p class="offering-desc">Immersive multi-day retreats. The extended container creates space for deeper drops, bigger risks, and the kind of transformation that only happens when you stay long enough for the armor to soften.</p>
+                    <div class="offering-meta">
+                        <span class="meta-tag">Retreat format</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- APPROACH -->
+    <section class="approach" id="approach">
+        <div class="container">
+            <div class="reveal">
+                <div class="section-label">The Approach</div>
+                <h2 class="section-title">Not more insight — <em>more aliveness</em></h2>
+                <div class="approach-text">
+                    <p>Most approaches to self-improvement take your sense of self for granted. They help you make the room you're in more comfortable. I work differently.</p>
+                    <p>We loosen your relationship to your "self" — the patterns, defenses, and stories you've mistaken for who you are. Through embodied practice, relational experimentation, and building tolerance for the feelings you've been avoiding, you discover something radical: <em>you can change.</em> Not by trying harder, but by holding yourself more loosely.</p>
+                </div>
+            </div>
+            <div class="approach-items reveal">
+                <div class="approach-item">
+                    <div class="approach-icon">⚡</div>
+                    <h3>Pattern Breaking</h3>
+                    <p>Identify the relational loops that keep you stuck, then practice something different — in real time, with real people.</p>
+                </div>
+                <div class="approach-item">
+                    <div class="approach-icon">🌊</div>
+                    <h3>Nervous System</h3>
+                    <p>Learn to regulate your body so you can stay present when things get real — instead of freezing, fleeing, or fighting.</p>
+                </div>
+                <div class="approach-item">
+                    <div class="approach-icon">✨</div>
+                    <h3>Somatic Awareness</h3>
+                    <p>Drop from the story in your head into the wisdom of your body. Sensation is information. Presence is practice.</p>
+                </div>
+                <div class="approach-item">
+                    <div class="approach-icon">💛</div>
+                    <h3>Relational Practice</h3>
+                    <p>Transformation doesn't happen alone. We grow in relationship — by being seen, seeing others, and staying when it's hard.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROOTS -->
+    <section class="roots">
+        <div class="container reveal">
+            <div class="section-label">Roots</div>
+            <h2 class="section-title">Where this <em>comes from</em></h2>
+            <ul class="roots-list">
+                <li>M.A. Organizational Psychology — Columbia University</li>
+                <li>M.A. Leadership — UNC Kenan-Flagler</li>
+                <li>Circling &amp; Embodied Inquiry</li>
+                <li>Shadow Work &amp; Jungian Psychology</li>
+                <li>Nervous System Mastery</li>
+                <li>Somatic Meditation</li>
+                <li>The Gurdjieff Work</li>
+                <li>10+ Years Relational Facilitation</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- CONNECT -->
+    <section class="connect" id="connect">
+        <div class="container reveal">
+            <div class="section-label" style="color: var(--sun);">Connect</div>
+            <h2 class="section-title">Ready to <em>begin</em>?</h2>
+            <p class="connect-text">Whether you're drawn to individual work, a group experience, or just want to learn more — the first step is always a conversation.</p>
+            <a href="https://calendly.com/sofiajeannec/mapping?month=2026-03" class="btn btn-glow">Book a Free Intro Call</a>
+            <div class="connect-links">
+                <a href="https://sofiajeanne.substack.com/" class="connect-link">Substack ↗</a>
+                <a href="https://www.instagram.com/sofullofsun/" class="connect-link">Instagram ↗</a>
+                <a href="https://www.youtube.com/@sofiajeanne" class="connect-link">YouTube ↗</a>
+                <a href="https://www.patreon.com/sofiajeanne" class="connect-link">Patreon ↗</a>
+                <a href="https://forms.gle/fvLKNTBDKuJJhuUT8" class="connect-link">Newsletter ↗</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2025 Sofia-Jeanne Caring · The Relational School</p>
+    </footer>
+
+    <script>
+        // Nav scroll
+        window.addEventListener('scroll', () => {
+            document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 60);
+        });
+
+        // Reveal on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
