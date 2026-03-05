@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sofia-Jeanne | Relational School</title>
+    <style>
+        :root {
+            --bg: #faf9f7;
+            --card: #ffffff;
+            --text: #2a2a2a;
+            --muted: #6b6b6b;
+            --accent: #8b5a6b;
+            --accent-light: #c9a0ad;
+            --warm: #e8ddd4;
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        h1 {
+            font-size: 2.4em;
+            font-weight: normal;
+            margin-bottom: 8px;
+            letter-spacing: 0.02em;
+        }
+        
+        .tagline {
+            color: var(--muted);
+            font-style: italic;
+            font-size: 1.15em;
+        }
+        
+        .section {
+            margin-bottom: 60px;
+        }
+        
+        h2 {
+            font-size: 1.4em;
+            font-weight: normal;
+            color: var(--accent);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--warm);
+        }
+        
+        p {
+            margin-bottom: 18px;
+        }
+        
+        .bio-section {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        
+        @media (min-width: 600px) {
+            .bio-section {
+                grid-template-columns: 1fr 2fr;
+            }
+        }
+        
+        .bio-photo {
+            width: 100%;
+            max-width: 200px;
+            margin: 0 auto;
+        }
+        
+        .bio-photo img {
+            width: 100%;
+            border-radius: 50%;
+            border: 3px solid var(--warm);
+        }
+        
+        .bio-placeholder {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: var(--warm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            font-size: 0.9em;
+            margin: 0 auto;
+        }
+        
+        .offerings {
+            display: grid;
+            gap: 25px;
+        }
+        
+        .offering {
+            background: var(--card);
+            border: 1px solid var(--warm);
+            border-radius: 12px;
+            padding: 25px;
+        }
+        
+        .offering h3 {
+            font-size: 1.15em;
+            font-weight: normal;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+        
+        .offering p {
+            color: var(--muted);
+            font-size: 0.95em;
+            margin-bottom: 12px;
+        }
+        
+        .offering .tag {
+            display: inline-block;
+            background: var(--warm);
+            color: var(--text);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin-right: 8px;
+        }
+        
+        .highlight-box {
+            background: var(--warm);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+        
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            text-align: center;
+        }
+        
+        .cta {
+            text-align: center;
+            margin: 50px 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1em;
+            transition: all 0.2s;
+        }
+        
+        .btn:hover {
+            background: #7a4a5a;
+        }
+        
+        .who-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .who-section li {
+            padding: 10px 0;
+            padding-left: 24px;
+            position: relative;
+        }
+        
+        .who-section li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--muted);
+            font-size: 0.9em;
+            border-top: 1px solid var(--warm);
+        }
+        
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sofia-Jeanne</h1>
+            <p class="tagline">Relational School</p>
+        </header>
+        
+        <section class="section bio-section">
+            <div class="bio-photo">
+                <div class="bio-placeholder">Photo</div>
+            </div>
+            <div class="bio-text">
+                <h2>About</h2>
+                <p>I work with people who've done the inner work — meditation, therapy, personal development — but still find themselves stuck in the same relational patterns. Smart, self-aware people who understand their patterns intellectually but can't seem to break free of them in the moment.</p>
+                <p>My approach is different. We're not adding more insight. We're loosening your grip on who you think you have to be. Through embodied practice — not just conversation — we create real change in how you show up in relationship.</p>
+            </div>
+        </section>
+        
+        <div class="highlight-box">
+            <p>"The work is simultaneously more radical AND more accessible. Instead of constantly managing your experience, you actually become okay with how it is. Through practical action you find out that your patterns don't have the power you thought they did — and that you can choose, no matter what you're feeling, to take right action in your life and in your relationships."</p>
+        </div>
+        
+        <section class="section who-section">
+            <h2>Who This Is For</h2>
+            <ul>
+                <li>You've done a lot of spiritual or personal development work, but your relationships still feel hard</li>
+                <li>You can see your patterns clearly, but knowing about them doesn't stop them from running you</li>
+                <li>You're tired of rearranging furniture in the same room — you want to realize you don't have to stay in that room at all</li>
+                <li>You're ready to practice something new in relationship, not just understand it</li>
+                <li>You want your transformation to be embodied, not just intellectual</li>
+            </ul>
+        </section>
+        
+        <section class="section">
+            <h2>Offerings</h2>
+            
+            <div class="offerings">
+                <div class="offering">
+                    <h3>🌀 Movement & Expression Session</h3>
+                    <p>Weekly solo processing through the body. Move what's stuck. Express what's held. Build capacity to stay with uncomfortable feelings without needing to fix them.</p>
+                    <span class="tag">Weekly</span>
+                    <span class="tag">Group container</span>
+                </div>
+                
+                <div class="offering">
+                    <h3>⚡ Group Pattern Break</h3>
+                    <p>Live relational practice. This is where the work actually happens — experimenting with new ways of being, in real relationship, with real feedback. The "scary forest" where patterns loosen and aliveness emerges.</p>
+                    <span class="tag">Weekly</span>
+                    <span class="tag">Group container</span>
+                </div>
+                
+                <div class="offering">
+                    <h3>📝 Journaling Circle</h3>
+                    <p>Open to all — a space to write, reflect, and integrate. Monthly members receive 1:1 time with me in a breakout room for deeper conversation, pattern-seeing, or whatever wants to emerge.</p>
+                    <span class="tag">Weekly</span>
+                    <span class="tag">Free access</span>
+                    <span class="tag">1:1 for members</span>
+                </div>
+                
+                <div class="offering">
+                    <h3>💎 1:1 Coaching</h3>
+                    <p>Deep, ongoing work together. I see your patterns, hold the vision of who you're becoming, and walk with you through the territory of transformation. For those ready for intensive personal attention.</p>
+                    <span class="tag">By application</span>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>The Approach</h2>
+            <p>Most approaches to self-improvement take your sense of self for granted. They help you make the room you're in more comfortable. I work differently.</p>
+            <p>We loosen your relationship to your "self" — the patterns, defenses, and stories you've mistaken for who you are. Through embodied practice, relational experimentation, and building tolerance for the feelings you've been avoiding, you discover something radical: <em>you can change.</em> Not by trying harder, but by holding yourself more loosely.</p>
+            <p>This is what neuroplasticity feels like. Uncomfortable, sometimes disorienting, and then — free.</p>
+        </section>
+        
+        <div class="cta">
+            <a href="mailto:sofia@example.com" class="btn">Get in Touch</a>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Sofia-Jeanne · Relational School</p>
+    </footer>
+</body>
+</html>
